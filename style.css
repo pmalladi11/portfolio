@@ -1,0 +1,203 @@
+/* ==========================================================
+   Portfolio stylesheet — minimalist, content first.
+   Change the colors and fonts here; every page uses this file.
+   ========================================================== */
+
+:root {
+  --text: #1a1a1a;
+  --muted: #5f6368;
+  --line: #e2e2e2;
+  --bg: #ffffff;
+  --bg-soft: #f6f6f4;
+  --link: #0b57d0;
+  --max: 760px;               /* reading width */
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e8e8e6;
+    --muted: #a0a4a8;
+    --line: #34363a;
+    --bg: #121314;
+    --bg-soft: #1b1c1e;
+    --link: #8ab4f8;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+main, .site-header .inner, .site-footer .inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img, video, iframe { max-width: 100%; display: block; }
+
+/* ---------- Header / nav ---------- */
+.site-header { border-bottom: 1px solid var(--line); }
+.site-header .inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.site-name { font-weight: 600; color: var(--text); }
+.site-nav a { margin-left: 18px; color: var(--muted); font-size: 15px; }
+.site-nav a:first-child { margin-left: 0; }
+.site-nav a:hover { color: var(--text); }
+
+/* ---------- Typography ---------- */
+h1 { font-size: 2rem; line-height: 1.25; margin: 48px 0 8px; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; margin: 48px 0 12px; padding-top: 8px; }
+h3 { font-size: 1.05rem; margin: 28px 0 8px; }
+p { margin: 0 0 16px; }
+ul, ol { padding-left: 22px; margin: 0 0 16px; }
+li { margin-bottom: 6px; }
+strong { font-weight: 600; }
+
+.lede { font-size: 1.1rem; color: var(--muted); margin-bottom: 24px; }
+.meta { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+
+section { scroll-margin-top: 16px; }
+
+/* ---------- Project list (home page) ---------- */
+.project {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.project:last-child { border-bottom: 1px solid var(--line); }
+.project h3 { margin: 0 0 4px; font-size: 1.15rem; }
+.project h3 a { color: var(--text); }
+.project .meta { margin-bottom: 10px; }
+.project p { margin-bottom: 10px; }
+
+.tags { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li {
+  margin: 0;
+  font-size: 13px;
+  font-family: var(--mono);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 8px;
+}
+
+/* ---------- Tables ---------- */
+table { width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; width: 34%; color: var(--muted); }
+.table-wrap { overflow-x: auto; }
+
+/* ---------- Key results box ---------- */
+.results {
+  background: var(--bg-soft);
+  border-left: 3px solid var(--text);
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.results h3 { margin-top: 0; }
+.results ul { margin-bottom: 0; }
+
+/* ---------- Iteration list ---------- */
+.iteration { border-top: 1px solid var(--line); padding-top: 4px; }
+
+/* ---------- Media + placeholders ---------- */
+figure { margin: 24px 0; }
+figcaption { font-size: 14px; color: var(--muted); margin-top: 8px; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 16px 0 24px;
+}
+.gallery figure { margin: 0; }
+
+/* Delete the .placeholder div and paste your <img>/<video> in its place */
+.placeholder {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  border: 1.5px dashed var(--line);
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: 14px;
+}
+.placeholder.square { aspect-ratio: 4 / 3; }
+
+.media-frame img, .media-frame video, figure > img, figure > video { width: 100%; height: auto; border-radius: 6px; }
+
+.video-embed { position: relative; aspect-ratio: 16 / 9; }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 6px; }
+
+/* ---------- Code ---------- */
+pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+code { font-family: var(--mono); font-size: 0.9em; }
+
+/* ---------- Documentation link block ---------- */
+.doc-link {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 16px 0 32px;
+}
+.doc-link p { margin-bottom: 6px; }
+
+/* ---------- Placeholder text you still need to fill in ---------- */
+.todo { background: #fff4c2; color: #4a3b00; padding: 0 4px; border-radius: 3px; }
+@media (prefers-color-scheme: dark) { .todo { background: #4a3b00; color: #fff4c2; } }
+
+/* ---------- Page nav (prev / next) ---------- */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  margin-top: 48px;
+  font-size: 15px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 1px solid var(--line); margin-top: 64px; }
+.site-footer .inner { padding-top: 20px; padding-bottom: 32px; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.6rem; margin-top: 32px; }
+  th { width: 40%; }
+}

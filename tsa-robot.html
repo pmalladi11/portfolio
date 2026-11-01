@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TSA Robotics: 4WD Robot with 4-Joint Arm — Pranav Malladi</title>
+  <meta name="description" content="Three design iterations of a remote-controlled pick-and-place robot for TSA Robotics.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="site-name" href="../index.html">Pranav Malladi</a>
+    <nav class="site-nav">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <h1>TSA Robotics: 4WD Robot with 4-Joint Arm</h1>
+  <div class="meta">Technology Student Association · Oct 2025 – Present · Electronics, firmware, and mechanical design</div>
+
+  <!-- HERO IMAGE: replace the placeholder div with
+       <img src="../assets/tsa-robot/final-robot.jpg" alt="Final TSA robot with arm extended"> -->
+  <figure>
+    <div class="placeholder">Photo: final robot (Design 3) with arm extended</div>
+    <figcaption>Final competition robot.</figcaption>
+  </figure>
+
+  <h2>Overview</h2>
+  <p>
+    The TSA Robotics challenge asks for a remote-controlled robot that picks up objects from source
+    totes and places them in destination totes under a time limit. I built three complete versions
+    of the robot. Each one was tested, its failures written down, and those failures drove the next
+    design. The final robot pairs a four-motor drivetrain with a modified four-joint arm and is
+    driven over Wi-Fi from a browser joystick and an Xbox controller.
+  </p>
+
+  <div class="results">
+    <h3>What this project accomplished</h3>
+    <ul>
+      <li>Cut the electronics from a relay network (an 8-channel relay board, two 4-channel relay modules, and several 9 V packs) down to a single stacked motor shield.</li>
+      <li>Wrote C++ firmware that turns the Arduino into its own Wi-Fi access point, serves a joystick control page, and converts joystick input into four wheel speeds.</li>
+      <li>Wrote a Python controller program that maps Xbox joysticks to four arm joints with dead zones, joint limits, and change-only command sending.</li>
+      <li>Split power into three isolated supplies (logic, drivetrain, arm) so the arm servos can't brown out the drive.</li>
+      <li>Solved tipping and a turning-torque shortfall through weight redistribution, gear-motor selection, and tire choice.</li>
+    </ul>
+  </div>
+
+  <h2>Final design at a glance</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Microcontroller</th><td>Arduino Uno R4 WiFi</td></tr>
+      <tr><th>Motor driver</th><td>Adafruit Motor Shield (4 DC channels, I2C)</td></tr>
+      <tr><th>Drivetrain</th><td>4WD, four 200 RPM N20 gear motors, 76 mm RC rubber tires</td></tr>
+      <tr><th>Arm</th><td>Modified Waveshare RoArm M2-S: serial bus servos (base, shoulder, elbow, gripper), ESP32-based driver board</td></tr>
+      <tr><th>Power</th><td>9 V Li-ion (Arduino) · 3S 800 mAh LiPo (drivetrain) · 3S 2200 mAh LiPo (arm)</td></tr>
+      <tr><th>Structure</th><td>3D-printed PLA 8 × 10 in base with cross-bracing and partial enclosure; aluminum and carbon-fiber arm members</td></tr>
+      <tr><th>Control</th><td>Browser joystick (drive) and Xbox controller via laptop (arm), both over Wi-Fi HTTP</td></tr>
+    </table>
+  </div>
+
+  <h2>Design iterations</h2>
+
+  <div class="iteration">
+    <h3>Design 1: Relay-switched prototype</h3>
+    <p>
+      The first robot switched four TT motors (80 RPM) on and off through an 8-channel relay board.
+      Arduino digital pins toggled each relay's ground, and two 4-channel relay modules with handheld
+      remotes signaled the next move. Three stacked decks held the mecanum-wheel drive, the relay
+      modules and 9 V batteries, and the Arduino with a 2S LiPo.
+    </p>
+    <p><strong>What testing showed:</strong> the robot was too heavy to turn and barely drove forward,
+      there was no room or weight budget left for an arm, missing 9 V connectors caused frequent power
+      loss, and the wiring was too tangled to debug. Relays can only switch motors fully on or off, so
+      there was also no speed control. The fix was not to patch this design but to rethink the
+      electronics entirely.</p>
+    <!-- Replace with <img src="../assets/tsa-robot/design-1.jpg" alt="Design 1 relay prototype"> -->
+    <figure><div class="placeholder">Photo: Design 1 (relay prototype)</div></figure>
+  </div>
+
+  <div class="iteration">
+    <h3>Design 2: Motor-shield redesign</h3>
+    <p>
+      Researching alternatives led me to the Adafruit Motor Shield, which plugs directly onto the
+      Arduino and drives all four motors with bidirectional, speed-controlled outputs. The
+      electronics shrank to the Arduino, the shield, four 100 RPM N20 motors, a power distribution
+      board fed by a 2S LiPo, and a 9 V battery through a barrel jack for the logic. Everything fit
+      on a single 3D-printed plate with pre-placed holes for each component.
+    </p>
+    <p><strong>What testing showed:</strong> 100 RPM gave plenty of torque but was too slow for
+      competition, the motors' thin shafts let the wheels wobble, and the plastic motor mounts bent
+      under load.</p>
+    <!-- Replace with <img src="../assets/tsa-robot/design-2.jpg" alt="Design 2 motor shield robot"> -->
+    <figure><div class="placeholder">Photo: Design 2 (motor-shield base)</div></figure>
+  </div>
+
+  <div class="iteration">
+    <h3>Design 3: Final competition robot</h3>
+    <p>
+      The final version kept the motor-shield architecture and added the arm. I enlarged the base to
+      8 × 10 in to lower the tipping risk, switched from mecanum to RC car wheels for traction over
+      terrain, replaced the mounts with rigid clamps bonded to the base, added alternating cross
+      supports underneath, and printed a partial enclosure so no electronics are exposed. The arm is
+      a RoArm M2-S that I modified with aluminum and carbon-fiber members to keep it light.
+    </p>
+    <p>
+      Power was split into three supplies: a 9 V Li-ion for the Arduino, a 3S 800 mAh LiPo for the
+      drivetrain, and a larger 3S 2200 mAh LiPo dedicated to the arm's servos, so high servo current
+      can't sag the voltage the drive and logic depend on.
+    </p>
+
+    <h3>Problems solved in Design 3</h3>
+    <ul>
+      <li><strong>Tipping when the arm extended.</strong> Extending the arm moved the center of mass
+        forward past the front wheels. I moved all batteries to the rear and kept the grabbing zone at
+        the front to counterbalance it.</li>
+      <li><strong>Not enough torque to turn.</strong> With 300 RPM motors the robot could drive straight
+        but stalled when turning in place, where the tires have to scrub sideways. Lowering speed in
+        code and raising battery voltage didn't fix it. Switching to 200 RPM gear motors (higher
+        gear reduction, more torque at the wheel) did, and swapping very grippy tires for slightly
+        smoother ones reduced the scrubbing friction further.</li>
+    </ul>
+  </div>
+
+  <h2>Software</h2>
+
+  <h3>Drivetrain firmware (C++, Arduino)</h3>
+  <p>
+    The Arduino Uno R4 starts its own Wi-Fi access point and runs a small HTTP server. Connecting to
+    it serves a control page with a touch/mouse joystick that sends its x/y position every 80 ms.
+    The firmware parses each request, clamps the values to ±1, mixes them into four wheel commands,
+    and scales them down together if any exceeds full power so steering ratios are preserved. A
+    small dead band stops the motors from humming near zero, and releasing the joystick sends an
+    explicit stop.
+  </p>
+<pre><code>void mecanumDrive(float x, float y, float r) {
+  float fl = y + x + r, fr = y - x - r;
+  float rl = y - x + r, rr = y + x - r;
+  float maxVal = max(max(abs(fl), abs(fr)), max(abs(rl), abs(rr)));
+  if (maxVal &gt; 1.0) { fl /= maxVal; fr /= maxVal; rl /= maxVal; rr /= maxVal; }
+  setMotor(motorFL, fl); setMotor(motorFR, fr);
+  setMotor(motorRL, rl); setMotor(motorRR, rr);
+}</code></pre>
+
+  <h3>Arm controller (Python, Pygame)</h3>
+  <p>
+    A laptop script reads an Xbox controller and treats each stick axis as a velocity for one arm
+    joint: base, shoulder, elbow, and gripper. A 0.2 dead zone removes stick drift, every joint is
+    clamped to safe limits, and one button returns the arm to a home pose. To avoid flooding the
+    arm's Wi-Fi link, a JSON command is only sent when some joint has moved by more than 0.01
+    since the last one.
+  </p>
+<pre><code>has_moved = any(abs(current_pos[k] - last_sent_pos[k]) &gt; 0.01 for k in current_pos)
+if has_moved:
+    send_to_robot()
+    last_sent_pos = current_pos.copy()
+time.sleep(0.06)</code></pre>
+
+  <h2>Media</h2>
+  <!-- Replace each placeholder div with an <img> tag, e.g.
+       <img src="../assets/tsa-robot/wiring.jpg" alt="Motor shield wiring"> -->
+  <div class="gallery">
+    <figure><div class="placeholder square">Photo: electronics / wiring</div><figcaption>Electronics layout</figcaption></figure>
+    <figure><div class="placeholder square">Photo: arm close-up</div><figcaption>Modified RoArm M2-S</figcaption></figure>
+    <figure><div class="placeholder square">Screenshot: joystick control page</div><figcaption>Browser control interface</figcaption></figure>
+    <figure><div class="placeholder square">Photo: at competition</div><figcaption>Competition day</figcaption></figure>
+  </div>
+
+  <!-- VIDEO: use ONE of these, then delete the placeholder div.
+       YouTube (recommended; keeps the repo small):
+         <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Robot demo" allowfullscreen></iframe></div>
+       Local file (keep under ~50 MB):
+         <video src="../assets/tsa-robot/demo.mp4" controls></video> -->
+  <figure>
+    <div class="placeholder">Video: robot completing a pick-and-place run</div>
+    <figcaption>Demo run.</figcaption>
+  </figure>
+
+  <h2>Lessons and next steps</h2>
+  <ul>
+    <li><strong>Control latency was the biggest competition problem.</strong> HTTP over Wi-Fi added
+      unpredictable lag. Next version: a dedicated RC transmitter and receiver wired straight to the
+      microcontroller.</li>
+    <li><strong>Motor shafts and mounts are still the weak point.</strong> Plan to move to stronger DC
+      gear motors with metal screw mounts.</li>
+    <li><strong>Revisit mecanum wheels</strong> using higher-quality wheels (e.g. goBILDA) to get
+      sideways movement without the slop of the generic ones.</li>
+  </ul>
+
+  <h2>Full documentation</h2>
+  <div class="doc-link">
+    <p><strong>TSA Robotics Portfolio</strong>: complete design write-up with all three iterations, wiring, full source code, and parts list.</p>
+    <a href="https://docs.google.com/document/d/1m7TjQcNdrFhAxpsRWcncw8sZSlfljJmLKWvVGp5D5wI/edit?usp=sharing" target="_blank" rel="noopener">Open the Google Doc →</a>
+  </div>
+
+  <nav class="page-nav">
+    <a href="../index.html#projects">← All projects</a>
+    <a href="electric-vehicle.html">Next: Electric Vehicle →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">© 2026 Pranav Malladi</div>
+</footer>
+
+</body>
+</html>

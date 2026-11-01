@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Science Olympiad Electric Vehicle — Pranav Malladi</title>
+  <meta name="description" content="A distance-targeting electric vehicle with a custom Arduino shield and BTS7960 motor driver.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="site-name" href="../index.html">Pranav Malladi</a>
+    <nav class="site-nav">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <h1>Science Olympiad Electric Vehicle</h1>
+  <div class="meta">Science Olympiad · Sep 2025 – Mar 2026 · Electronics, custom shield, firmware, and chassis</div>
+
+  <!-- HERO IMAGE: replace the placeholder div with
+       <img src="../assets/electric-vehicle/ev-final.jpg" alt="Electric vehicle on the track"> -->
+  <figure>
+    <div class="placeholder">Photo: complete electric vehicle</div>
+    <figcaption>The finished vehicle.</figcaption>
+  </figure>
+
+  <h2>Overview</h2>
+  <p>
+    In the Science Olympiad Electric Vehicle event, a battery-powered car must travel a target
+    distance announced at the competition and stop as close to it as possible. That makes it a
+    precision problem: the vehicle has to be configurable on the spot, start and stop reliably, and
+    drive straight. I designed the electronics around an Arduino Uno and a high-current motor
+    driver, built a custom shield to replace loose breadboard wiring, and gave the vehicle its own
+    user interface so the target could be set at the track without a laptop.
+  </p>
+
+  <div class="results">
+    <h3>What this project accomplished</h3>
+    <ul>
+      <li>Designed a custom Arduino shield that assigns pins to every peripheral and provides shared 5 V and ground rails, eliminating the breadboard and its loose connections.</li>
+      <li>Built an on-vehicle interface (I2C LCD, two push buttons, and a potentiometer) for entering the target distance and starting or stopping the run.</li>
+      <li>Drove a 550-size brushed motor through a BTS7960 high-current H-bridge, isolating the motor's current from the low-power logic.</li>
+      <li>Designed a modular 3D-printed chassis on carbon-fiber rails so each subsystem has its own mount and can be swapped independently.</li>
+      <li>Identified the vehicle's length and sighting system as the main sources of error and set a concrete plan to fix both.</li>
+    </ul>
+  </div>
+
+  <h2>Design at a glance</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Microcontroller</th><td>Arduino Uno R3 with custom-designed shield</td></tr>
+      <tr><th>Motor driver</th><td>BTS7960 high-current H-bridge</td></tr>
+      <tr><th>Drivetrain</th><td>Rear-wheel drive, 550-size 21T brushed motor</td></tr>
+      <tr><th>Power</th><td>8 × AA NiMH (≈ 9.6 V nominal), shared by the motor driver and, through a barrel jack, the Arduino</td></tr>
+      <tr><th>User interface</th><td>LCD over I2C, two buttons (digital inputs), one potentiometer (analog input)</td></tr>
+      <tr><th>Structure</th><td>3D-printed PLA component mounts on carbon-fiber rods</td></tr>
+    </table>
+  </div>
+
+  <h2>Electronics</h2>
+  <p>
+    The Arduino Uno R3 is the controller. Instead of wiring every peripheral through a breadboard,
+    I designed a shield that plugs onto the Arduino headers and routes each component to its own
+    pins: the LCD to the I2C bus (SDA/SCL), the buttons to digital inputs, the potentiometer to an
+    analog input, and the motor driver's control lines to digital outputs. The shield also
+    distributes 5 V and ground to every component, which removed the most common source of
+    intermittent faults.
+  </p>
+  <p>
+    An Arduino pin can only source a few milliamps, while a 550 motor draws amps. The BTS7960
+    H-bridge sits between them: the Arduino sends low-power direction and speed signals, and the
+    driver switches the battery pack's current through the motor. The 8-cell NiMH pack powers the
+    driver directly and also feeds the Arduino through its barrel jack.
+  </p>
+  <p>
+    <span class="todo">Add 1–2 sentences on how the EV measures distance and decides when to stop (e.g. wheel encoder counts, timed run, braking method). Reviewers will look for this.</span>
+  </p>
+
+  <!-- Replace with <img src="../assets/electric-vehicle/wiring-diagram.png" alt="Wiring diagram: battery, BTS7960, motor, Arduino"> -->
+  <figure>
+    <div class="placeholder">Diagram: wiring of battery, BTS7960 driver, motor, and Arduino</div>
+    <figcaption>Power and motor wiring.</figcaption>
+  </figure>
+
+  <!-- Replace with <img src="../assets/electric-vehicle/custom-shield.jpg" alt="Custom Arduino shield"> -->
+  <figure>
+    <div class="placeholder">Photo or KiCad render: custom Arduino shield</div>
+    <figcaption>Custom shield: pin routing and shared power rails.</figcaption>
+  </figure>
+
+  <h2>Structure</h2>
+  <p>
+    The chassis is modular: separate 3D-printed parts, each holding one component (one for the
+    Arduino, one for the motor driver, and so on), slide onto a rail of carbon-fiber rods. Printing
+    the whole vehicle as one part wasn't possible on a standard printer bed, and the rod rail gave a
+    stiff, lightweight backbone while letting me reposition or reprint any single mount without
+    rebuilding the car.
+  </p>
+
+  <h2>Software</h2>
+  <p>
+    <span class="todo">Describe the firmware in a few sentences: reading the potentiometer and buttons, the LCD menu, and the run sequence. Optionally paste a short, well-commented excerpt below.</span>
+  </p>
+<pre><code>// Paste a short excerpt of your EV code here (10–20 lines),
+// e.g. the run loop or the distance-to-target logic.</code></pre>
+
+  <h2>Media</h2>
+  <!-- Replace each placeholder div with an <img> tag, e.g.
+       <img src="../assets/electric-vehicle/lcd.jpg" alt="LCD showing target distance"> -->
+  <div class="gallery">
+    <figure><div class="placeholder square">Photo: LCD + controls</div><figcaption>Setting the target distance</figcaption></figure>
+    <figure><div class="placeholder square">Photo: drivetrain</div><figcaption>550 motor and rear drive</figcaption></figure>
+    <figure><div class="placeholder square">Photo: chassis / rod rail</div><figcaption>Modular chassis</figcaption></figure>
+    <figure><div class="placeholder square">Photo: at competition</div><figcaption>Competition run</figcaption></figure>
+  </div>
+
+  <!-- VIDEO: use ONE of these, then delete the placeholder div.
+       <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="EV run" allowfullscreen></iframe></div>
+       <video src="../assets/electric-vehicle/run.mp4" controls></video> -->
+  <figure>
+    <div class="placeholder">Video: a full run to the target distance</div>
+    <figcaption>Test run.</figcaption>
+  </figure>
+
+  <h2>Lessons and next steps</h2>
+  <ul>
+    <li><strong>The vehicle is too long.</strong> Length makes it hard to pass between closely spaced
+      cans, which some runs require. The fix is to move all the electronics onto a single PCB, with
+      only the batteries and motor as separate parts, so the vehicle can be built as one compact unit.</li>
+    <li><strong>Alignment caused the largest distance errors.</strong> The loosely mounted sighting
+      scope made it easy to aim slightly off, and a small angle error at launch becomes a large error
+      at the target. Next time: a rigidly mounted sight that I practice with extensively, or a laser
+      if the rules allow it.</li>
+  </ul>
+
+  <h2>Full documentation</h2>
+  <div class="doc-link">
+    <p><strong>EV Portfolio</strong>: full design write-up with wiring diagram, structure, and improvement plan.</p>
+    <a href="https://docs.google.com/document/d/1HGSe8SgT4Edh1rPyVpZAmQjP7L8qxF_pMubZr-tzyq8/edit?usp=sharing" target="_blank" rel="noopener">Open the Google Doc →</a>
+  </div>
+
+  <nav class="page-nav">
+    <a href="tsa-robot.html">← Previous: TSA Robot</a>
+    <a href="fpv-drone.html">Next: FPV Drone →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">© 2026 Pranav Malladi</div>
+</footer>
+
+</body>
+</html>

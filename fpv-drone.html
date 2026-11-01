@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TSA Drone Challenge: 5-inch FPV Drone — Pranav Malladi</title>
+  <meta name="description" content="A 5-inch FPV quadcopter built from components and configured in Betaflight for the TSA Drone Challenge.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="site-name" href="../index.html">Pranav Malladi</a>
+    <nav class="site-nav">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <h1>TSA Drone Challenge: 5-inch FPV Drone</h1>
+  <div class="meta">Technology Student Association, Drone Challenge (UAV) · 2025–2026 season · Team build</div>
+
+  <!-- HERO IMAGE: replace the placeholder div with
+       <img src="../assets/fpv-drone/drone-final.jpg" alt="Completed 5-inch FPV drone"> -->
+  <figure>
+    <div class="placeholder">Photo: completed drone</div>
+    <figcaption>The finished 5-inch quadcopter.</figcaption>
+  </figure>
+
+  <h2>Overview</h2>
+  <p>
+    For the TSA Drone Challenge, our team built a 5-inch FPV (first-person view) quadcopter from
+    individual components rather than a ready-to-fly kit. That meant choosing a compatible power
+    system, soldering high-current connections, wiring serial and video links, and configuring the
+    flight controller ourselves. The drone flies reliably with working motors, radio link, and live
+    video to FPV goggles. The project also included researching the airspace restrictions at the
+    national conference site near Washington, D.C.
+  </p>
+  <p>
+    <strong>My role:</strong> <span class="todo">State exactly what you did on this team project,
+    e.g. “soldered the motors and ESC, wired the receiver, and handled all Betaflight
+    configuration.” Admissions readers and interviewers value a clear, honest account of your
+    contribution.</span>
+  </p>
+
+  <div class="results">
+    <h3>What this project accomplished</h3>
+    <ul>
+      <li>Assembled a complete 6S brushless power system: four 2207 1800KV motors on a 4-in-1 ESC stacked with an F4 flight controller.</li>
+      <li>Hand-soldered all motor leads to the ESC pads using flux and pre-tinned joints, and pull-tested each connection.</li>
+      <li>Wired an ELRS receiver to the flight controller's UART4 and configured it as a CRSF serial receiver.</li>
+      <li>Diagnosed a video-system incompatibility with the flight controller and re-architected the video path to work around it.</li>
+      <li>Configured arming switches, verified motor order and spin direction, and tested safely with props removed.</li>
+      <li>Researched FAA recreational rules and the Washington, D.C. Special Flight Rules Area for the national conference.</li>
+    </ul>
+  </div>
+
+  <h2>Build at a glance</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Frame</th><td>Lumenier QAV-S 2, 5-inch</td></tr>
+      <tr><th>Flight controller</th><td>XILO Stax V3 F4 (30 × 30 mm stack)</td></tr>
+      <tr><th>ESC</th><td>XILO Stax V3 50A AM32 4-in-1, 3–6S</td></tr>
+      <tr><th>Motors</th><td>4 × XILO Stealth 2207 1800KV (6S)</td></tr>
+      <tr><th>Propellers</th><td>Gemfan Hurricane 4937, 3-blade</td></tr>
+      <tr><th>Battery</th><td>Ovonic 6S 1300 mAh LiPo (22.2 V), XT60 connector, 14 AWG leads</td></tr>
+      <tr><th>Radio</th><td>ExpressLRS receiver on UART4 (CRSF protocol), handheld transmitter</td></tr>
+      <tr><th>Video</th><td>Analog FPV camera, XILO Stax 5.8 GHz VTX (25–600 mW), Fat Shark Recon goggles</td></tr>
+      <tr><th>Software</th><td>Betaflight Configurator</td></tr>
+    </table>
+  </div>
+
+  <h2>Build process</h2>
+
+  <h3>Frame and motors</h3>
+  <p>
+    We assembled the 5-inch frame, aligned the motor arms and the central stack mount, and bolted on
+    the 2207 1800KV motors, a common pairing for 6S 5-inch builds that balances thrust and efficiency.
+    One early observation: the frame is fairly heavy, which makes adding a claw or payload mechanism
+    harder later.
+  </p>
+
+  <h3>ESC and soldering</h3>
+  <p>
+    The 4-in-1 ESC mounts on the frame's stack standoffs and converts the battery's DC into the
+    three-phase signals each brushless motor needs. Each motor's leads were cut to length, fluxed, and
+    tinned; the ESC pads were fluxed and pre-loaded with solder; then each lead was reflowed onto its
+    pad with the iron alone. This was our first time soldering high-current pads, where too much heat
+    can lift a pad and destroy the board, so every joint was gently pull-tested afterward.
+  </p>
+
+  <h3>Flight controller and receiver</h3>
+  <p>
+    The F4 flight controller stacks above the ESC on the same mounting pattern and connects to it
+    with the supplied harness. The ExpressLRS receiver was wired to the next free UART (TX4/RX4, plus
+    power and ground) and bound to the transmitter.
+  </p>
+
+  <h3>Video system: a debugging story</h3>
+  <p>
+    We first soldered the VTX and camera to the flight controller's dedicated video and power pads,
+    but couldn't get a working picture. After troubleshooting and research, we found the video
+    components weren't compatible with connecting through this flight controller. We desoldered
+    them, wired the camera directly to the VTX, and powered the video system from its own small
+    battery. This got video working again. The trade-off was losing the flight controller's
+    connection to the video system, which meant giving up convenient in-flight battery monitoring.
+  </p>
+
+  <h3>Final assembly</h3>
+  <p>
+    The receiver antenna, camera mounts, top plate, and a cable organizer for the 14 AWG battery
+    leads went on last (after sorting out a fitment problem caused by using the wrong screws in a few
+    places), followed by a foam pad and a Kevlar strap to secure the battery.
+  </p>
+
+  <!-- Replace with <img src="../assets/fpv-drone/wiring.png" alt="Drone wiring schematic"> -->
+  <figure>
+    <div class="placeholder">Diagram: wiring schematic (ESC, FC, receiver, VTX, camera)</div>
+    <figcaption>Wiring schematic.</figcaption>
+  </figure>
+
+  <h2>Betaflight configuration</h2>
+  <ul>
+    <li><strong>Ports.</strong> A UART is a serial link between the flight controller's processor and
+      a peripheral. Because the receiver is soldered to TX4/RX4, UART4 was set to Serial RX.</li>
+    <li><strong>Receiver.</strong> Set the provider to CRSF, then confirmed the link by moving the
+      sticks and switches and watching every channel respond (motors stay disabled while connected
+      over USB).</li>
+    <li><strong>Modes.</strong> Assigned arming and other functions to auxiliary switches. Arming
+      only triggers when its switch channel reads 1700–2100 µs, so a switch in its low position can't
+      arm the drone by accident.</li>
+    <li><strong>Motors.</strong> Spun each motor at low throttle with props removed to confirm it
+      worked, then used motor reordering and slow-motion video to verify spin direction. Diagonal motor
+      pairs must spin the same way so their torques cancel, and any wrong motor was reversed in
+      software.</li>
+  </ul>
+
+  <!-- Replace each placeholder with a Betaflight screenshot, e.g.
+       <img src="../assets/fpv-drone/betaflight-ports.png" alt="Betaflight ports tab"> -->
+  <div class="gallery">
+    <figure><div class="placeholder square">Screenshot: Ports tab</div><figcaption>UART4 → Serial RX</figcaption></figure>
+    <figure><div class="placeholder square">Screenshot: Modes tab</div><figcaption>Arm switch range</figcaption></figure>
+  </div>
+
+  <h2>Regulations research</h2>
+  <p>
+    The national conference was held near Washington, D.C., inside the Special Flight Rules Area
+    around Reagan National Airport (DCA). We documented its two rings: drone flight within 15 miles
+    of DCA is prohibited without specific FAA authorization, while recreational flight between 15 and
+    30 miles is allowed under limited conditions: registered aircraft, below 400 ft, within visual
+    line of sight, in clear weather, and well away from other aircraft. We also summarized the
+    federal recreational rules, including registering and marking any drone over 250 g.
+  </p>
+
+  <h2>Media</h2>
+  <!-- Replace each placeholder div with an <img> tag. -->
+  <div class="gallery">
+    <figure><div class="placeholder square">Photo: ESC soldering</div><figcaption>Motor leads on the 4-in-1 ESC</figcaption></figure>
+    <figure><div class="placeholder square">Photo: stack (FC + ESC)</div><figcaption>Flight stack</figcaption></figure>
+    <figure><div class="placeholder square">Image: engineering drawing</div><figcaption>Engineered drawing</figcaption></figure>
+    <figure><div class="placeholder square">Photo: flying / at competition</div><figcaption>In flight</figcaption></figure>
+  </div>
+
+  <!-- VIDEO: use ONE of these, then delete the placeholder div.
+       <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Drone flight" allowfullscreen></iframe></div>
+       <video src="../assets/fpv-drone/flight.mp4" controls></video> -->
+  <figure>
+    <div class="placeholder">Video: test flight (third-person view or FPV recording)</div>
+    <figcaption>Test flight.</figcaption>
+  </figure>
+
+  <h2>Lessons and next steps</h2>
+  <ul>
+    <li><strong>Check compatibility before soldering.</strong> The video rework cost time and a feature;
+      reading the flight controller's documentation for camera and VTX support first would have
+      caught it.</li>
+    <li><strong>Payload mechanism.</strong> <span class="todo">Describe the status of the servo
+      gripper (30 kg servo + gripper claw in the parts list), or remove this line.</span></li>
+    <li><strong>Weight.</strong> A lighter frame would leave more margin for mounting a claw or other
+      payload.</li>
+  </ul>
+
+  <h2>Full documentation</h2>
+  <div class="doc-link">
+    <p><strong>Drone Challenge Portfolio</strong>: step-by-step photo log, wiring schematic, Betaflight setup, engineering drawing, bill of materials, and regulations research.</p>
+    <a href="https://docs.google.com/document/d/1ByhIQpIYlEWVOfwCBJ76Pndu9Zox5ICeowMn2B5Bfbc/edit?usp=sharing" target="_blank" rel="noopener">Open the Google Doc →</a>
+  </div>
+
+  <nav class="page-nav">
+    <a href="electric-vehicle.html">← Previous: Electric Vehicle</a>
+    <a href="../index.html#projects">All projects →</a>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="inner">© 2026 Pranav Malladi</div>
+</footer>
+
+</body>
+</html>
