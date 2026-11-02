@@ -201,3 +201,15 @@ code { font-family: var(--mono); font-size: 0.9em; }
   h1 { font-size: 1.6rem; margin-top: 32px; }
   th { width: 40%; }
 }
+
+/* Gallery images: same frame as the placeholders, whole image visible */
+.gallery figure > img, .gallery figure > a > img {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+}
+
+/* Keep tall (portrait) photos from filling the whole screen */
+figure > img { max-height: 75vh; width: auto; max-width: 100%; margin: 0 auto; }
+.gallery figure > img, .gallery figure > a > img { width: 100%; max-height: none; border-radius: 6px; }

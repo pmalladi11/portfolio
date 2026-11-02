@@ -25,9 +25,8 @@
   <h1>TSA Robotics: 4WD Robot with 4-Joint Arm</h1>
   <div class="meta">Technology Student Association · Oct 2025 – Present · Electronics, firmware, and mechanical design</div>
 
-       <img src="../assets/final-robot.jpeg" alt="Final TSA robot with arm extended">
   <figure>
-    <div class="placeholder">Photo: final robot (Design 3) with arm extended</div>
+    <img src="assets/final-robot.jpeg" alt="Final TSA robot with arm extended">
     <figcaption>Final competition robot.</figcaption>
   </figure>
 
@@ -79,8 +78,10 @@
       loss, and the wiring was too tangled to debug. Relays can only switch motors fully on or off, so
       there was also no speed control. The fix was not to patch this design but to rethink the
       electronics entirely.</p>
-    <!-- Replace with <img src="../assets/tsa-robot/design-1.jpg" alt="Design 1 relay prototype"> -->
-    <figure><div class="placeholder">Photo: Design 1 (relay prototype)</div></figure>
+    <figure>
+      <img src="assets/tsa-design-1.jpg" alt="Design 1: three-deck relay prototype on mecanum wheels">
+      <figcaption>Design 1: the relay-switched, three-deck prototype.</figcaption>
+    </figure>
   </div>
 
   <div class="iteration">
@@ -95,8 +96,10 @@
     <p><strong>What testing showed:</strong> 100 RPM gave plenty of torque but was too slow for
       competition, the motors' thin shafts let the wheels wobble, and the plastic motor mounts bent
       under load.</p>
-    <!-- Replace with <img src="../assets/tsa-robot/design-2.jpg" alt="Design 2 motor shield robot"> -->
-    <figure><div class="placeholder">Photo: Design 2 (motor-shield base)</div></figure>
+    <figure>
+      <img src="assets/tsa-design-2.jpg" alt="Design 2: single-plate base with Arduino and motor shield">
+      <figcaption>Design 2: motor shield and N20 motors on a single printed plate.</figcaption>
+    </figure>
   </div>
 
   <div class="iteration">
@@ -113,6 +116,19 @@
       drivetrain, and a larger 3S 2200 mAh LiPo dedicated to the arm's servos, so high servo current
       can't sag the voltage the drive and logic depend on.
     </p>
+
+    <figure>
+      <img src="assets/tsa-design-3-electronics.jpg" alt="Design 3 chassis: N20 motors in rigid clamps with RC tires on the 8 x 10 in base">
+      <figcaption>Design 3 chassis: N20 motors in rigid clamps with RC tires on the enlarged 8 × 10 in base.</figcaption>
+    </figure>
+
+    <h3>Wiring</h3>
+    <p class="small muted">Click a diagram to open it full size.</p>
+    <div class="gallery">
+      <figure><a href="assets/tsa-motor-wiring.png"><img src="assets/tsa-motor-wiring.png" alt="Motor wiring diagram: four N20 motors on the Adafruit motor shield, powered by a LiPo through a fuse"></a><figcaption>Drivetrain: four N20 motors on the motor shield</figcaption></figure>
+      <figure><a href="assets/tsa-controller-wiring.png"><img src="assets/tsa-controller-wiring.png" alt="Microcontroller wiring diagram: Arduino Uno R4 WiFi powered by a 9 V battery through a fuse and barrel jack"></a><figcaption>Logic: Arduino Uno R4 WiFi on its own 9 V supply</figcaption></figure>
+      <figure><a href="assets/tsa-arm-wiring.png"><img src="assets/tsa-arm-wiring.png" alt="Robot arm wiring diagram: serial servos chained to the Waveshare ESP32 driver board with OLED and 3S LiPo"></a><figcaption>Arm: serial servos on the ESP32 driver board</figcaption></figure>
+    </div>
 
     <h3>Problems solved in Design 3</h3>
     <ul>
@@ -162,8 +178,8 @@ if has_moved:
 time.sleep(0.06)</code></pre>
 
   <h2>Media</h2>
-  <!-- Replace each placeholder div with an <img> tag, e.g.
-       <img src="../assets/tsa-robot/wiring.jpg" alt="Motor shield wiring"> -->
+  <!-- Replace each remaining placeholder div with an <img> tag, e.g.
+       <img src="assets/your-photo.jpg" alt="Short description"> -->
   <div class="gallery">
     <figure><div class="placeholder square">Photo: electronics / wiring</div><figcaption>Electronics layout</figcaption></figure>
     <figure><div class="placeholder square">Photo: arm close-up</div><figcaption>Modified RoArm M2-S</figcaption></figure>
@@ -175,7 +191,7 @@ time.sleep(0.06)</code></pre>
        YouTube (recommended; keeps the repo small):
          <div class="video-embed"><iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Robot demo" allowfullscreen></iframe></div>
        Local file (keep under ~50 MB):
-         <video src="../assets/tsa-robot/demo.mp4" controls></video> -->
+         <video src="assets/tsa-demo.mp4" controls></video> -->
   <figure>
     <div class="placeholder">Video: robot completing a pick-and-place run</div>
     <figcaption>Demo run.</figcaption>
@@ -199,7 +215,7 @@ time.sleep(0.06)</code></pre>
   </div>
 
   <nav class="page-nav">
-    <a href="../index.html#projects">← All projects</a>
+    <a href="index.html#projects">← All projects</a>
     <a href="electric-vehicle.html">Next: Electric Vehicle →</a>
   </nav>
 
