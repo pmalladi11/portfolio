@@ -82,6 +82,11 @@
     One early observation: the frame is fairly heavy, which makes adding a claw or payload mechanism
     harder later.
   </p>
+  <div class="gallery">
+    <figure><img src="assets/drone-step1-parts.jpg" alt="Frame kit parts, screws, and tools laid out before assembly"><figcaption>Frame kit and tools before assembly</figcaption></figure>
+    <figure><img src="assets/drone-step1-frame.jpg" alt="Assembled 5-inch frame with motor arms and stack mount"><figcaption>Assembled frame</figcaption></figure>
+    <figure><img src="assets/drone-step2-motors.jpg" alt="Four 2207 motors mounted on the frame arms with the ESC and XT60 lead in the center"><figcaption>Motors and ESC mounted</figcaption></figure>
+  </div>
 
   <h3>ESC and soldering</h3>
   <p>
@@ -91,6 +96,10 @@
     pad with the iron alone. This was our first time soldering high-current pads, where too much heat
     can lift a pad and destroy the board, so every joint was gently pull-tested afterward.
   </p>
+  <figure>
+    <img src="assets/drone-step4-soldered.jpg" alt="Motor leads soldered to the pads of the 4-in-1 ESC">
+    <figcaption>All twelve motor leads soldered to the 4-in-1 ESC.</figcaption>
+  </figure>
 
   <h3>Flight controller and receiver</h3>
   <p>
@@ -98,6 +107,10 @@
     with the supplied harness. The ExpressLRS receiver was wired to the next free UART (TX4/RX4, plus
     power and ground) and bound to the transmitter.
   </p>
+  <div class="gallery cols-2">
+    <figure><img src="assets/drone-step5-fc.jpg" alt="Flight controller stacked on top of the ESC with props installed"><figcaption>Flight controller stacked on the ESC</figcaption></figure>
+    <figure><img src="assets/drone-step6-video.jpg" alt="Binding the receiver to the handheld transmitter"><figcaption>Binding the receiver to the transmitter</figcaption></figure>
+  </div>
 
   <h3>Video system: a debugging story</h3>
   <p>
@@ -115,10 +128,13 @@
     leads went on last (after sorting out a fitment problem caused by using the wrong screws in a few
     places), followed by a foam pad and a Kevlar strap to secure the battery.
   </p>
+  <div class="gallery cols-2">
+    <figure><img src="assets/drone-step7-receiver.jpg" alt="Drone with top plate, camera, and antenna mounted"><figcaption>Top plate, camera, and antenna mounted</figcaption></figure>
+    <figure><img src="assets/drone-final-controller.jpg" alt="Finished drone next to its handheld transmitter"><figcaption>Finished drone and transmitter</figcaption></figure>
+  </div>
 
-  <!-- Replace with <img src="assets/drone-wiring.png" alt="Drone wiring schematic"> -->
   <figure>
-    <div class="placeholder">Diagram: wiring schematic (ESC, FC, receiver, VTX, camera)</div>
+    <a href="assets/drone-wiring.jpg"><img src="assets/drone-wiring.jpg" alt="Hand-drawn wiring schematic: battery to ESC, ESC to flight controller and four motors, receiver and video wiring" style="max-height:640px;"></a>
     <figcaption>Wiring schematic.</figcaption>
   </figure>
 
@@ -138,11 +154,12 @@
       software.</li>
   </ul>
 
-  <!-- Replace each placeholder with a Betaflight screenshot, e.g.
-       <img src="assets/drone-betaflight-ports.png" alt="Betaflight ports tab"> -->
-  <div class="gallery">
-    <figure><div class="placeholder square">Screenshot: Ports tab</div><figcaption>UART4 → Serial RX</figcaption></figure>
-    <figure><div class="placeholder square">Screenshot: Modes tab</div><figcaption>Arm switch range</figcaption></figure>
+  <p class="small muted">Click a screenshot to open it full size.</p>
+  <div class="gallery cols-2">
+    <figure><a href="assets/drone-betaflight-ports.png"><img src="assets/drone-betaflight-ports.png" alt="Betaflight Ports tab with Serial RX enabled on UART4"></a><figcaption>Ports: UART4 → Serial RX</figcaption></figure>
+    <figure><a href="assets/drone-betaflight-receiver.png"><img src="assets/drone-betaflight-receiver.png" alt="Betaflight Receiver tab with CRSF selected and live channel bars"></a><figcaption>Receiver: CRSF, channels responding</figcaption></figure>
+    <figure><a href="assets/drone-betaflight-modes.png"><img src="assets/drone-betaflight-modes.png" alt="Betaflight Modes tab with ARM assigned to an aux switch range"></a><figcaption>Modes: arm switch range</figcaption></figure>
+    <figure><a href="assets/drone-betaflight-motors.jpg"><img src="assets/drone-betaflight-motors.jpg" alt="Betaflight Motors tab with motor test sliders and Quad X layout"></a><figcaption>Motors: spin test with props off</figcaption></figure>
   </div>
 
   <h2>Regulations research</h2>
@@ -156,11 +173,9 @@
   </p>
 
   <h2>Media</h2>
-  <!-- Replace each placeholder div with an <img> tag. -->
+  <!-- Replace the remaining placeholder div with an <img> tag. -->
   <div class="gallery">
-    <figure><div class="placeholder square">Photo: ESC soldering</div><figcaption>Motor leads on the 4-in-1 ESC</figcaption></figure>
-    <figure><div class="placeholder square">Photo: stack (FC + ESC)</div><figcaption>Flight stack</figcaption></figure>
-    <figure><div class="placeholder square">Image: engineering drawing</div><figcaption>Engineered drawing</figcaption></figure>
+    <figure><img src="assets/drone-engineering-drawing.png" alt="Engineering drawing of the drone with overall dimensions 11.5 in by 9.5 in by 4.5 in"><figcaption>Engineered drawing: 11.5 × 9.5 × 4.5 in</figcaption></figure>
     <figure><div class="placeholder square">Photo: flying / at competition</div><figcaption>In flight</figcaption></figure>
   </div>
 

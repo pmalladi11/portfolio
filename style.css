@@ -213,3 +213,5 @@ code { font-family: var(--mono); font-size: 0.9em; }
 /* Keep tall (portrait) photos from filling the whole screen */
 figure > img { max-height: 75vh; width: auto; max-width: 100%; margin: 0 auto; }
 .gallery figure > img, .gallery figure > a > img { width: 100%; max-height: none; border-radius: 6px; }
+.gallery.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 520px) { .gallery.cols-2 { grid-template-columns: 1fr; } }
