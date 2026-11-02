@@ -39,43 +39,58 @@
     <h2>Projects</h2>
 
     <article class="project">
-      <h3><a href="tsa-robot.html">TSA Robotics: 4WD Robot with 4-Joint Arm</a></h3>
-      <div class="meta">Technology Student Association · Oct 2025 – Present</div>
-      <p>
-        A remote-controlled pick-and-place robot taken through three complete redesigns. Went from a
-        relay-switched prototype too heavy to turn to a compact motor-shield drivetrain with a
-        modified RoArm M2-S arm, controlled over Wi-Fi from a browser joystick and an Xbox controller.
-      </p>
-      <ul class="tags">
-        <li>Arduino Uno R4</li><li>C++</li><li>Python</li><li>ESP32</li><li>Motor control</li><li>3D printing</li>
-      </ul>
+      <div class="project-text">
+        <h3><a href="tsa-robot.html">TSA Robotics: 4WD Robot with 4-Joint Arm</a></h3>
+        <div class="meta">Technology Student Association · Oct 2025 – Present</div>
+        <p>
+          A remote-controlled pick-and-place robot taken through three complete redesigns. Went from a
+          relay-switched prototype too heavy to turn to a compact motor-shield drivetrain with a
+          modified RoArm M2-S arm, controlled over Wi-Fi from a browser joystick and an Xbox controller.
+        </p>
+        <ul class="tags">
+          <li>Arduino Uno R4</li><li>C++</li><li>Python</li><li>ESP32</li><li>Motor control</li><li>3D printing</li>
+        </ul>
+      </div>
+      <a class="project-preview" href="tsa-robot.html" aria-label="Open the TSA robot project">
+        <img src="assets/final-robot.jpeg" alt="" loading="lazy">
+      </a>
     </article>
 
     <article class="project">
-      <h3><a href="electric-vehicle.html">Science Olympiad Electric Vehicle</a></h3>
-      <div class="meta">Science Olympiad · Sep 2025 – Mar 2026</div>
-      <p>
-        A distance-targeting electric vehicle built around an Arduino, a BTS7960 H-bridge, and a 550
-        brushed motor. I designed a custom Arduino shield to replace the breadboard and built an
-        on-vehicle interface (LCD, rotary dial, buttons) to set the target distance and time at the track,
-        with an AS5600 magnetic encoder measuring distance.
-      </p>
-      <ul class="tags">
-        <li>Arduino Uno R3</li><li>C++</li><li>Custom shield</li><li>H-bridge</li><li>I2C</li><li>Magnetic encoder</li>
-      </ul>
+      <div class="project-text">
+        <h3><a href="electric-vehicle.html">Science Olympiad Electric Vehicle</a></h3>
+        <div class="meta">Science Olympiad · Sep 2025 – Mar 2026</div>
+        <p>
+          A distance-targeting electric vehicle built around an Arduino, a BTS7960 H-bridge, and a 550
+          brushed motor. I designed a custom Arduino shield to replace the breadboard and built an
+          on-vehicle interface (LCD, rotary dial, buttons) to set the target distance and time at the track,
+          with an AS5600 magnetic encoder measuring distance.
+        </p>
+        <ul class="tags">
+          <li>Arduino Uno R3</li><li>C++</li><li>Custom shield</li><li>H-bridge</li><li>I2C</li><li>Magnetic encoder</li>
+        </ul>
+      </div>
+      <a class="project-preview" href="electric-vehicle.html" aria-label="Open the Electric vehicle project">
+        <video src="assets/ev-preview.mp4" poster="assets/ev-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </a>
     </article>
 
     <article class="project">
-      <h3><a href="fpv-drone.html">TSA Drone Challenge: 5-inch FPV Drone</a></h3>
-      <div class="meta">Technology Student Association · Oct 2025 – Present</div>
-      <p>
-        A 5-inch FPV quadcopter built from components: soldered 6S motors to a 4-in-1 ESC, wired an
-        ELRS receiver over UART, integrated an analog video system, and configured the flight
-        controller in Betaflight. Includes airspace research for flying at the national conference.
-      </p>
-      <ul class="tags">
-        <li>Betaflight</li><li>Soldering</li><li>UART / CRSF</li><li>Brushless ESC</li><li>FAA rules</li>
-      </ul>
+      <div class="project-text">
+        <h3><a href="fpv-drone.html">TSA Drone Challenge: 5-inch FPV Drone</a></h3>
+        <div class="meta">Technology Student Association · Oct 2025 – Present</div>
+        <p>
+          A 5-inch FPV quadcopter built from components: soldered 6S motors to a 4-in-1 ESC, wired an
+          ELRS receiver over UART, integrated an analog video system, and configured the flight
+          controller in Betaflight. Includes airspace research for flying at the national conference.
+        </p>
+        <ul class="tags">
+          <li>Betaflight</li><li>Soldering</li><li>UART / CRSF</li><li>Brushless ESC</li><li>FAA rules</li>
+        </ul>
+      </div>
+      <a class="project-preview" href="fpv-drone.html" aria-label="Open the FPV drone project">
+        <video src="assets/drone-preview.mp4" poster="assets/drone-preview-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </a>
     </article>
   </section>
 
@@ -156,6 +171,15 @@
   </section>
 
 </main>
+
+<script>
+  // Respect "reduce motion": don't autoplay the preview clips
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.project-preview video').forEach(function (v) {
+      v.removeAttribute('autoplay'); v.pause();
+    });
+  }
+</script>
 
 <footer class="site-footer">
   <div class="inner">© 2026 Pranav Malladi</div>

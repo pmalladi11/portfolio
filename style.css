@@ -215,3 +215,23 @@ figure > img { max-height: 75vh; width: auto; max-width: 100%; margin: 0 auto; }
 .gallery figure > img, .gallery figure > a > img { width: 100%; max-height: none; border-radius: 6px; }
 .gallery.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 520px) { .gallery.cols-2 { grid-template-columns: 1fr; } }
+
+/* ---------- Project preview clips (home page) ---------- */
+.project { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 24px; align-items: center; }
+.project-preview {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg-soft);
+  aspect-ratio: 16 / 9;
+}
+.project-preview video, .project-preview img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .3s ease;
+}
+.project-preview:hover video, .project-preview:hover img { transform: scale(1.04); }
+@media (max-width: 640px) {
+  .project { grid-template-columns: 1fr; gap: 14px; }
+  .project-preview { order: -1; }
+}
