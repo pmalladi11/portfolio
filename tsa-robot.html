@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TSA Robotics: 4WD Robot with 4-Joint Arm — Pranav Malladi</title>
   <meta name="description" content="Three design iterations of a remote-controlled pick-and-place robot for TSA Robotics.">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -178,13 +178,10 @@ if has_moved:
 time.sleep(0.06)</code></pre>
 
   <h2>Media</h2>
-  <!-- Replace each remaining placeholder div with an <img> tag, e.g.
-       <img src="assets/your-photo.jpg" alt="Short description"> -->
-  <div class="gallery">
-    <figure><div class="placeholder square">Photo: electronics / wiring</div><figcaption>Electronics layout</figcaption></figure>
-    <figure><div class="placeholder square">Photo: arm close-up</div><figcaption>Modified RoArm M2-S</figcaption></figure>
-    <figure><div class="placeholder square">Screenshot: joystick control page</div><figcaption>Browser control interface</figcaption></figure>
-    <figure><div class="placeholder square">Photo: at competition</div><figcaption>Competition day</figcaption></figure>
+  <p class="small muted">Click a photo to open it full size.</p>
+  <div class="gallery cols-2 portrait">
+    <figure><a href="assets/tsa-wiring-photo.jpg"><img src="assets/tsa-wiring-photo.jpg" alt="Top-down view of the robot base wiring: Adafruit motor shield, power distribution board, LiPo and 9 V batteries, inline fuse, lever connectors, and four N20 motors" loading="lazy"></a><figcaption>Base wiring: motor shield, power distribution, and fused battery leads</figcaption></figure>
+    <figure><a href="assets/tsa-arm-closeup.jpg"><img src="assets/tsa-arm-closeup.jpg" alt="Close-up of the modified RoArm M2-S: Waveshare ST3215 serial bus servo at the base joint wired to the ESP32 driver board" loading="lazy"></a><figcaption>Modified RoArm M2-S: ST3215 serial servo and ESP32 driver board</figcaption></figure>
   </div>
 
   <!-- Video is hosted on Google Drive (file is too large for a GitHub web upload). -->
